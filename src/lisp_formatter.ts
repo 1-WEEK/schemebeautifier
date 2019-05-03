@@ -1,7 +1,7 @@
-import { 
-    DocumentFormattingEditProvider, 
-    TextDocument, 
-    FormattingOptions, 
+import {
+    DocumentFormattingEditProvider,
+    TextDocument,
+    FormattingOptions,
     CancellationToken,
     ProviderResult,
     TextEdit,
@@ -12,13 +12,12 @@ import {
 
 export class LispFormatter implements DocumentFormattingEditProvider {
     provideDocumentFormattingEdits(
-            document: TextDocument, 
-            options: FormattingOptions, 
+            document: TextDocument,
+            options: FormattingOptions,
             token: CancellationToken
         ): ProviderResult<TextEdit[]> {
-        
+
         const text = document.getText();
-        let indentation = 0;
         let openLists = 0;
         let result = "";
         let newLine = true;
@@ -96,7 +95,7 @@ export class LispFormatter implements DocumentFormattingEditProvider {
                     charEscaped = !charEscaped;
                     result += text.charAt(i);
                     break;
-            
+
                 default:
                     if (charEscaped) {
                         charEscaped = false;
